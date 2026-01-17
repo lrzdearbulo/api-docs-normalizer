@@ -19,12 +19,15 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Virtual environments
 venv/
 env/
 ENV/
 .venv
+env.bak/
+venv.bak/
 
 # IDE
 .vscode/
@@ -37,6 +40,14 @@ ENV/
 .pytest_cache/
 .coverage
 htmlcov/
+.tox/
+.nox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
 
 # Cache del proyecto
 ~/.api-docs-normalizer/
@@ -44,3 +55,11 @@ htmlcov/
 # Archivos de salida de ejemplo (opcional, descomentar si no quieres versionarlos)
 # examples/*.yaml
 # examples/*.json
+
+# Ruff
+.ruff_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
