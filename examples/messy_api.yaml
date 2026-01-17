@@ -1,0 +1,280 @@
+openapi: 3.0.0
+info:
+  title: messy_api
+  version: 1.0.0
+  description: API normalizada desde documentación no estructurada
+servers:
+- url: https://api.example.com
+  description: Servidor de producción
+tags:
+- name: orders
+- name: products
+- name: users
+paths:
+  /users:
+    get:
+      summary: Obtiene la lista completa de usuarios registrados en el sistema. Retorna
+        un array con todos los usuarios.
+      operationId: get_users
+      tags:
+      - users
+      description: Obtiene la lista completa de usuarios registrados en el sistema.
+        Retorna un array con todos los usuarios.
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Crea un nuevo usuario en el sistema. Requiere email y password.
+      operationId: post_users
+      tags:
+      - users
+      description: Crea un nuevo usuario en el sistema. Requiere email y password.
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+  /users/{id}:
+    get:
+      summary: Obtiene la información de un usuario específico por su ID.
+      operationId: get_users_by_id
+      tags:
+      - users
+      description: Obtiene la información de un usuario específico por su ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del id
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Actualiza la información de un usuario existente.
+      operationId: put_users_by_id
+      tags:
+      - users
+      description: Actualiza la información de un usuario existente.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del id
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Elimina un usuario del sistema.
+      operationId: delete_users_by_id
+      tags:
+      - users
+      description: Elimina un usuario del sistema.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del id
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+  /products:
+    get:
+      summary: Lista todos los productos disponibles.
+      operationId: get_products
+      tags:
+      - products
+      description: Lista todos los productos disponibles.
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Crea un nuevo producto. Requiere nombre, precio y descripción.
+      operationId: post_products
+      tags:
+      - products
+      description: Crea un nuevo producto. Requiere nombre, precio y descripción.
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+  /products/{productId}:
+    get:
+      summary: Obtiene los detalles de un producto específico.
+      operationId: get_products_by_productId
+      tags:
+      - products
+      description: Obtiene los detalles de un producto específico.
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del productId
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Actualiza la información de un producto.
+      operationId: put_products_by_productId
+      tags:
+      - products
+      description: Actualiza la información de un producto.
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del productId
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Elimina un producto del catálogo.
+      operationId: delete_products_by_productId
+      tags:
+      - products
+      description: Elimina un producto del catálogo.
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del productId
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders:
+    get:
+      summary: Lista todos los pedidos realizados.
+      operationId: get_orders
+      tags:
+      - orders
+      description: Lista todos los pedidos realizados.
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Crea un nuevo pedido. Requiere userId y lista de productos.
+      operationId: post_orders
+      tags:
+      - orders
+      description: Crea un nuevo pedido. Requiere userId y lista de productos.
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/{orderId}:
+    get:
+      summary: Obtiene los detalles de un pedido específico.
+      operationId: get_orders_by_orderId
+      tags:
+      - orders
+      description: Obtiene los detalles de un pedido específico.
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del orderId
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Cancela un pedido.
+      operationId: delete_orders_by_orderId
+      tags:
+      - orders
+      description: Cancela un pedido.
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del orderId
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/{orderId}/status:
+    patch:
+      summary: Actualiza el estado de un pedido.
+      operationId: patch_orders_by_orderId
+      tags:
+      - orders
+      description: Actualiza el estado de un pedido.
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Identificador del orderId
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
